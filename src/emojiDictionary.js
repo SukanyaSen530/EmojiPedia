@@ -20,7 +20,13 @@ const emojiDictionary = [
   { emoji: "🤢", category: "Sick", meaning: "Nauseated Face" },
   { emoji: "🤫", category: "Speechless", meaning: "Shushing Face" },
   { emoji: "🍑", category: "Fruit", meaning: "Peach" },
-  { emoji: "🩸", category: "Others", meaning: "Drop of Blood" }
+  { emoji: "🦋", category: "Insect", meaning: "Butterfly" },
+  { emoji: "🦖", category: "Animal", meaning: "T-REx" },
+  { emoji: "🐋", category: "Fish", meaning: "Whale" },
+  { emoji: "🦘", category: "Animal", meaning: "Kangaroo" },
+  { emoji: "🐬", category: "Fish", meaning: "Dolphin" },
+  { emoji: "🦚", category: "Bird", meaning: "Peacock" },
+  { emoji: "🐜", category: "Insect", meaning: "Ant" }
 ];
 
 export default emojiDictionary;

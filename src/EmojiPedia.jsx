@@ -19,8 +19,10 @@ export default function EmojiPedia({ emojiData }) {
 
   const handleSearch = () => {
     setFilteredEmoji(
-      emojiData?.filter((item) =>
-        item.category.toLowerCase().includes(query.toLowerCase())
+      emojiData?.filter(
+        (item) =>
+          item.category.toLowerCase().includes(query.toLowerCase()) ||
+          item.meaning.toLowerCase().includes(query.toLowerCase())
       )
     );
   };
@@ -29,7 +31,7 @@ export default function EmojiPedia({ emojiData }) {
     <section className="section_body">
       <div className="search_box">
         <input
-          placeholder="Search by Category"
+          placeholder="Search by Category & Meaning"
           value={query}
           onChange={handleInput}
         />
@@ -62,6 +64,7 @@ export default function EmojiPedia({ emojiData }) {
               ))}
         </ul>
       </div>
+      <p> Note : Click clear to reset </p>
     </section>
   );
 }
