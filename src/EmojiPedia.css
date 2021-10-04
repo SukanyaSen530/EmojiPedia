@@ -53,6 +53,7 @@ button {
 .display_emoji ul > li {
   margin: 0.5rem 1rem;
   font-size: 2rem;
+  flex: 1;
 }
 
 .emoji_meaning {

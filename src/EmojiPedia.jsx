@@ -17,6 +17,7 @@ export default function EmojiPedia({ emojiData }) {
 
   const handleReset = () => {
     setQuery("");
+    setMeaning("Emojis we know!");
   };
 
   const handleSearch = () => {
