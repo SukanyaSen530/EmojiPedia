@@ -6,7 +6,10 @@ export default function EmojiPedia({ emojiData }) {
   const [meaning, setMeaning] = useState("Emojis we know!");
   const [filteredEmoji, setFilteredEmoji] = useState(emojiData);
 
-  const categories = [...new Set(emojiData.map((item) => item.category))];
+  const categories = [
+    "All",
+    ...new Set(emojiData.map((item) => item.category))
+  ];
 
   const handleInput = (e) => {
     setQuery(e.target.value);
@@ -14,27 +17,26 @@ export default function EmojiPedia({ emojiData }) {
 
   const handleReset = () => {
     setQuery("");
-    setFilteredEmoji(emojiData);
   };
 
   const handleSearch = () => {
-    setFilteredEmoji(
-      emojiData?.filter(
-        (item) =>
-          item.category.toLowerCase().includes(query.toLowerCase()) ||
-          item.meaning.toLowerCase().includes(query.toLowerCase())
-      )
-    );
+    const res = emojiData?.filter((item) => item.emoji === query);
+
+    res.length === 0
+      ? setMeaning("No such emoji found!")
+      : setMeaning(res[0].meaning);
+  };
+
+  const handleFilter = (category) => {
+    if (category === "All") setFilteredEmoji(emojiData);
+    else
+      setFilteredEmoji(emojiData?.filter((item) => item.category === category));
   };
 
   return (
     <section className="section_body">
       <div className="search_box">
-        <input
-          placeholder="Search by Category & Meaning"
-          value={query}
-          onChange={handleInput}
-        />
+        <input placeholder="Search..." value={query} onChange={handleInput} />
         <button onClick={handleSearch}>
           Search{" "}
           <span role="img" aria-label="search-icon">
@@ -47,7 +49,9 @@ export default function EmojiPedia({ emojiData }) {
       <div className="categories">
         <h5>Categories</h5>
         {categories.map((item) => (
-          <button key={item}>{item}</button>
+          <button key={item} onClick={() => handleFilter(item)}>
+            {item}
+          </button>
         ))}
       </div>
 
@@ -55,16 +59,17 @@ export default function EmojiPedia({ emojiData }) {
 
       <div className="display_emoji">
         <ul>
-          {filteredEmoji.length === 0
-            ? "No Serach Results.."
-            : filteredEmoji?.map((item, ind) => (
-                <li key={ind} onClick={() => setMeaning(item.meaning)}>
-                  {item.emoji}
-                </li>
-              ))}
+          {filteredEmoji?.map((item, ind) => (
+            <li key={ind} onClick={() => setMeaning(item.meaning)}>
+              {item.emoji}
+            </li>
+          ))}
         </ul>
       </div>
-      <p> Note : Click clear to reset </p>
+
+      <p style={{ fontSize: "14px", color: "green" }}>
+        Note : Click on categories to filter emojis!{" "}
+      </p>
     </section>
   );
 }

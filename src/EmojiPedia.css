@@ -34,6 +34,10 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.categories button:hover {
+  background-color: #61a5c2;
+}
+
 .display_emoji {
   width: 340px;
   margin: auto;
