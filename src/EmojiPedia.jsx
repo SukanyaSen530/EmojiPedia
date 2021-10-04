@@ -21,7 +21,7 @@ export default function EmojiPedia({ emojiData }) {
   };
 
   const handleSearch = () => {
-    const res = emojiData?.filter((item) => item.emoji === query);
+    const res = emojiData?.filter((item) => item.emoji === query.trim());
 
     res.length === 0
       ? setMeaning("No such emoji found!")
